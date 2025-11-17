@@ -1,6 +1,5 @@
 Get-NetAdapter
-Write-Host "Enter Interface Index"
-$ifindex = Read-Host " "
+$ifindex = Read-Host "Enter Interface Index"
 
 Write-Host "Enter Server IP"
 $ip = Read-Host " "
@@ -14,4 +13,7 @@ $name = Read-Host " "
 New-NetIPAddress -InterfaceIndex $ifindex -IPAddress $ip -PrefixLength 24 -DefaultGateway $gateway
 Set-DnsClientServerAddress -InterfaceIndex $ifindex -ServerAddresses ("127.0.0.1", "8.8.8.8")
 Rename-Computer -NewName $name
+
+ipconfig /all
+Read-Host "Press any button to restart..."
 Restart-Computer
