@@ -14,4 +14,4 @@ Add-DhcpServerv4ExclusionRange -ScopeId $scopeid -StartRange $exstart -EndRange 
 
 Set-DhcpServerv4OptionValue -ScopeId $scopeid -OptionId 6 -Value $env:ip, "8.8.8.8"
 Set-DhcpServerv4OptionValue -ScopeId $scopeid -Router $gateway
-Set-DhcpServerv4OptionValue -DnsDomain $fqdn -DnsServer $env:ip
+Set-DhcpServerv4OptionValue -DnsDomain $env:USERDNSDOMAIN -DnsServer $env:ip
