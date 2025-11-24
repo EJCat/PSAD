@@ -1,6 +1,8 @@
 Get-NetAdapter
 $ifindex = Read-Host "Enter Interface Index"
 
+# NOTE remove queries for Server IP and Gateway
+# Should be set manually before running script
 Write-Host "Enter Server IP"
 $ip = Read-Host " "
 
