@@ -1,10 +1,11 @@
-$fqdn = $($env:COMPUTERNAME).$($env:USERDNSDOMAIN)
+$fqdn = [System.Net.Dns]::GetHostByName($env:computerName).HostName
+$gateway = (Get-NetRoute "0.0.0.0/0").NextHop
 $env:ip = (Test-Connection -ComputerName $env:COMPUTERNAME -Count 1).IPV4Address.IPAddressToString
 Add-DhcpServerInDC -DnsName $fqdn -IPAddress $env:ip
 
 $start = Read-Host "Enter DHCP start range"
 $end = Read-Host "Enter DHCP end range"
-$scopeid = Read-Host "Enter Scope ID (network ID)"
+$scopeid = Read-Host "Enter Scope ID (network ID e.g. 192.168.1.0)"
 Add-DhcpServerv4Scope -Name "Network" -StartRange $start -EndRange $end -SubnetMask 255.255.255.0 -state Active
 
 $exstart = Read-Host "Enter DHCP exclusion start range"
