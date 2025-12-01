@@ -1,6 +1,6 @@
 Simple AD Setup Scripts
 
-1. setip
+1. sethostname
 2. adds
 3. dhcp
-4. dns
+4. user
