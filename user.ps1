@@ -1,12 +1,14 @@
-$fqdn = [System.Net.Dns]::GetHostByName($env:computerName).HostName
-$gateway = (Get-NetRoute "0.0.0.0/0").NextHop
-$env:ip = (Test-Connection -ComputerName $env:COMPUTERNAME -Count 1).IPV4Address.IPAddressToStrin
-
-$name = (Read-Host 'Username')
+$user = (Read-Host 'Firstname')
+$last = (Read-Host 'Lastname')
 $user = @{
-    Name = $name
-    SamAccountName = $name.ToLower()
+    Name = $user + ' ' + $last
+    GivenName = $user
+    SurName = $last
+    UserPrincipleName = $user.ToLower() + "." + ($env:USERDNSDOMAIN).ToLower()
+    SamAccountName = $user.ToLower()
     AccountPassword = (Read-Host -AsSecureString 'Account Password')
+    PasswordNotRequired = $true
     Enabled = $true
 }
+Import-Module ActiveDirectory
 New-ADUser @user
