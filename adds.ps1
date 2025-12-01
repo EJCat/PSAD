@@ -1,6 +1,4 @@
-Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools
-Install-WindowsFeature -name DHCP -IncludeManagementTools
-Install-WindowsFeature -name DNS -IncludeManagementTools
+Install-WindowsFeature -name AD-Domain-Services, DHCP, DNS -IncludeManagementTools
 
 $domain = Read-Host "Enter Domain Root (e.g. fruit.com)"
 $netbios = Read-Host "All Caps Name Infront Of .com (e.g. fruit.com -> FRUIT)"
