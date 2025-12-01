@@ -6,8 +6,8 @@ $user = @{
     SurName = $last
     UserPrincipalName = $user.ToLower() + "." + ($env:USERDNSDOMAIN).ToLower()
     SamAccountName = $user.ToLower()
-    AccountPassword = (Read-Host -AsSecureString 'Account Password')
     PasswordNotRequired = $true
+    AccountPassword = (Read-Host -AsSecureString 'Account Password')
     Enabled = $true
 }
 Import-Module ActiveDirectory
